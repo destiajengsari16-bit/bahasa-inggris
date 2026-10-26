@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for MI - How Much Is It?</title>
+    <!-- Tailwind CSS (Diperbolehkan melalui CDN untuk styling modern) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles & Animations */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Nunito', system-ui, sans-serif;
+            background-color: #f0fdf4; /* Light Islamic Green Background */
+            background-image: radial-gradient(#dcfce7 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pop-in {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Custom Scrollbar for small devices */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a; 
+            border-radius: 4px;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.15), 0 8px 10px -6px rgba(22, 163, 74, 0.1);
+        }
+
+        /* Emojis as images substitute to ensure 100% offline capability */
+        .emoji-icon {
+            font-size: 3rem;
+            line-height: 1;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Running Text (Marquee) Animation */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #166534; /* green-800 */
+            color: #fef08a; /* yellow-200 */
+            padding: 0.4rem 0;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-green-700 z-[100] flex flex-col items-center justify-center text-white transition-opacity duration-700">
+        <div class="animate-bounce mb-4 text-7xl" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">🕌</div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-2 text-center px-4">MI English Explorer</h1>
+        <p class="text-green-100 font-semibold mb-8 text-center">Fase C - Kelas V</p>
+        <div class="w-16 h-16 border-4 border-green-500 border-t-yellow-400 rounded-full animate-spin"></div>
+        <p class="mt-4 text-sm text-green-200 animate-pulse">Memuat Modul...</p>
+    </div>
+
+    <!-- Top Navigation / Header -->
+    <header class="bg-green-700 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">🕌</span>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-yellow-300">MI English Explorer</h1>
+                    <p class="text-xs text-green-100">Fase C - Kelas V</p>
+                </div>
+            </div>
+            <div id="header-nav" class="hidden text-sm font-semibold bg-green-800 px-3 py-1 rounded-full border border-green-600">
+                <span id="current-section">Materi</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Running Text Information -->
+    <div class="marquee-container border-b-2 border-yellow-500">
+        <div class="marquee-content">
+            ✨ Selamat datang di MPI Bahasa Inggris Fase C Kelas V - Mari belajar menyebutkan harga makanan dan minuman di Warung Sukamakmur, Tolangohula, Gorontalo! Tetap semangat belajarnya ya! ✨
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="w-full max-w-3xl bg-white rounded-2xl card-shadow border-t-8 border-yellow-500 overflow-hidden relative min-h-[500px] flex flex-col">
+            
+            <!-- 1. HOME VIEW (Cover / Menu Utama) -->
+            <div id="view-home" class="flex-grow flex flex-col items-center justify-center p-6 text-center fade-in">
+                <div class="bg-green-50 p-4 rounded-full mb-4 border border-green-200">
+                    <span class="text-6xl" style="filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));">🛍️</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-green-700 mb-1">How Much Is It?</h2>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto text-sm">
+                    Modul Pembelajaran Interaktif Bahasa Inggris untuk MI<br>Daerah Tolangohula, Gorontalo
+                </p>
+
+                <!-- Menu Navigasi Cover -->
+                <div class="grid grid-cols-1 gap-4 w-full max-w-sm">
+                    <button onclick="switchView('view-material')" class="bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-md transform transition hover:-translate-y-1 active:scale-95 flex items-center justify-between">
+                        <span class="flex items-center space-x-3"><span class="text-2xl">🚀</span> <span>Mulai Belajar</span></span>
+                        <span>➔</span>
+                    </button>
+                    
+                    <button onclick="switchView('view-objectives')" class="bg-white border-2 border-yellow-400 text-yellow-700 font-bold py-3 px-6 rounded-xl shadow-sm transform transition hover:bg-yellow-50 hover:-translate-y-1 active:scale-95 flex items-center justify-between">
+                        <span class="flex items-center space-x-3"><span class="text-2xl">🎯</span> <span>Tujuan Pembelajaran</span></span>
+                        <span>➔</span>
+                    </button>
+
+                    <button onclick="switchView('view-info')" class="bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-xl shadow-sm transform transition hover:bg-gray-50 hover:-translate-y-1 active:scale-95 flex items-center justify-between">
+                        <span class="flex items-center space-x-3"><span class="text-2xl">ℹ️</span> <span>Info & Referensi</span></span>
+                        <span>➔</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. MATERIAL VIEW (Vocabulary) -->
+            <div id="view-material" class="hidden flex-grow flex-col p-6 fade-in">
+                <h3 class="text-xl font-bold text-green-700 mb-4 border-b-2 border-yellow-400 pb-2 inline-block">1. Look and Learn (Materi)</h3>
+                <p class="text-sm text-gray-600 mb-4">Perhatikan nama makanan, minuman, dan harganya dalam bahasa Inggris.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <!-- Flashcard 1 -->
+                    <div class="bg-green-50 border border-green-100 rounded-xl p-4 text-center transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer">
+                        <div class="emoji-icon mb-2">🍛</div>
+                        <div class="font-bold text-gray-800 text-sm">Yellow Rice</div>
+                        <div class="text-xs text-gray-500 italic">(Nasi Kuning)</div>
+                        <div class="mt-2 bg-yellow-400 text-green-900 text-xs font-bold py-1 px-2 rounded-lg">Rp 10.000</div>
+                        <div class="text-xs mt-1 text-green-700 font-semibold">Ten thousand rupiahs</div>
+                    </div>
+                    <!-- Flashcard 2 -->
+                    <div class="bg-green-50 border border-green-100 rounded-xl p-4 text-center transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer">
+                        <div class="emoji-icon mb-2">🌽</div>
+                        <div class="font-bold text-gray-800 text-sm">Corn Soup</div>
+                        <div class="text-xs text-gray-500 italic">(Binte Biluhuta)</div>
+                        <div class="mt-2 bg-yellow-400 text-green-900 text-xs font-bold py-1 px-2 rounded-lg">Rp 8.000</div>
+                        <div class="text-xs mt-1 text-green-700 font-semibold">Eight thousand rupiahs</div>
+                    </div>
+                    <!-- Flashcard 3 -->
+                    <div class="bg-green-50 border border-green-100 rounded-xl p-4 text-center transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer">
+                        <div class="emoji-icon mb-2">🍌</div>
+                        <div class="font-bold text-gray-800 text-sm">Fried Banana</div>
+                        <div class="text-xs text-gray-500 italic">(Pisang Goreng)</div>
+                        <div class="mt-2 bg-yellow-400 text-green-900 text-xs font-bold py-1 px-2 rounded-lg">Rp 2.000</div>
+                        <div class="text-xs mt-1 text-green-700 font-semibold">Two thousand rupiahs</div>
+                    </div>
+                    <!-- Flashcard 4 -->
+                    <div class="bg-green-50 border border-green-100 rounded-xl p-4 text-center transform transition hover:-translate-y-1 hover:shadow-md cursor-pointer">
+                        <div class="emoji-icon mb-2">🥤</div>
+                        <div class="font-bold text-gray-800 text-sm">Sweet Tea</div>
+                        <div class="text-xs text-gray-500 italic">(Es Teh Manis)</div>
+                        <div class="mt-2 bg-yellow-400 text-green-900 text-xs font-bold py-1 px-2 rounded-lg">Rp 3.000</div>
+                        <div class="text-xs mt-1 text-green-700 font-semibold">Three thousand rupiahs</div>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                    <h4 class="font-bold text-yellow-800 mb-2">📌 Key Phrases (Kalimat Penting)</h4>
+                    <ul class="text-sm space-y-2 text-gray-700">
+                        <li><span class="font-bold text-green-700">Q:</span> <i>"How much is it?"</i> (Berapa harganya?)</li>
+                        <li><span class="font-bold text-green-700">A:</span> <i>"It is ten thousand rupiahs."</i> (Harganya sepuluh ribu rupiah)</li>
+                        <li>*Hundred = Ratus, Thousand = Ribu.</li>
+                    </ul>
+                </div>
+
+                <div class="mt-auto pt-6 flex justify-between">
+                    <button onclick="switchView('view-home')" class="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition">Kembali</button>
+                    <button onclick="switchView('view-interactive')" class="px-6 py-2 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition flex items-center space-x-2">
+                        <span>Ayo Belanja</span>
+                        <span>➔</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. INTERACTIVE VIEW (Warung Simulation) -->
+            <div id="view-interactive" class="hidden flex-grow flex-col p-6 fade-in">
+                <h3 class="text-xl font-bold text-green-700 mb-2 border-b-2 border-yellow-400 pb-2 inline-block">2. Let's Shop! (Simulasi)</h3>
+                <p class="text-sm text-gray-600 mb-4">Selamat datang di Warung Sukamakmur! Pilih makanan yang ingin kamu beli untuk melihat harganya dalam bahasa Inggris.</p>
+                
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Shop Items -->
+                    <div class="md:w-1/2 grid grid-cols-2 gap-3">
+                        <button onclick="addToCart('Yellow Rice', 10000, 'Ten thousand')" class="bg-white border-2 border-gray-200 p-3 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center active:scale-95">
+                            <span class="text-3xl mb-1">🍛</span>
+                            <span class="text-xs font-bold">Yellow Rice</span>
+                            <span class="text-xs text-yellow-600 font-bold">Rp 10.000</span>
+                        </button>
+                        <button onclick="addToCart('Corn Soup', 8000, 'Eight thousand')" class="bg-white border-2 border-gray-200 p-3 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center active:scale-95">
+                            <span class="text-3xl mb-1">🌽</span>
+                            <span class="text-xs font-bold">Corn Soup</span>
+                            <span class="text-xs text-yellow-600 font-bold">Rp 8.000</span>
+                        </button>
+                        <button onclick="addToCart('Fried Banana', 2000, 'Two thousand')" class="bg-white border-2 border-gray-200 p-3 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center active:scale-95">
+                            <span class="text-3xl mb-1">🍌</span>
+                            <span class="text-xs font-bold">Fried Banana</span>
+                            <span class="text-xs text-yellow-600 font-bold">Rp 2.000</span>
+                        </button>
+                        <button onclick="addToCart('Sweet Tea', 3000, 'Three thousand')" class="bg-white border-2 border-gray-200 p-3 rounded-xl hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center justify-center active:scale-95">
+                            <span class="text-3xl mb-1">🥤</span>
+                            <span class="text-xs font-bold">Sweet Tea</span>
+                            <span class="text-xs text-yellow-600 font-bold">Rp 3.000</span>
+                        </button>
+                    </div>
+
+                    <!-- Calculator/Interaction Result -->
+                    <div class="md:w-1/2 bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 text-green-100 opacity-50" style="font-size: 8rem;">🏪</div>
+                        <div class="z-10 w-full">
+                            <h4 class="font-bold text-gray-700 mb-2">Interaksi Kasir</h4>
+                            
+                            <!-- Placeholder -->
+                            <div id="cart-placeholder" class="text-gray-400 text-sm italic py-8">
+                                Klik makanan di samping untuk bertanya harga.
+                            </div>
+
+                            <!-- Result Box -->
+                            <div id="cart-result" class="hidden pop-in">
+                                <div class="bg-white p-3 rounded-lg shadow-sm border border-green-100 mb-3 text-left">
+                                    <p class="text-sm font-bold text-blue-600">You:</p>
+                                    <p class="text-sm text-gray-800 italic">"Excuse me, <span class="font-bold text-green-700">how much is</span> one <span id="item-name" class="font-bold border-b border-green-300">...</span>?"</p>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded-lg shadow-sm border border-green-200 text-left">
+                                    <p class="text-sm font-bold text-green-800">Seller:</p>
+                                    <p class="text-sm text-gray-800 italic">"It is <span id="item-price-en" class="font-bold text-yellow-600">...</span> rupiahs."</p>
+                                    <p class="text-xs text-gray-500 mt-1 font-mono bg-white inline-block px-1 rounded border border-gray-200" id="item-price-num">Rp ...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-6 flex justify-between">
+                    <button onclick="switchView('view-material')" class="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition">Kembali</button>
+                    <button onclick="startQuiz()" class="px-6 py-2 bg-yellow-500 text-white font-bold rounded-full hover:bg-yellow-600 transition flex items-center space-x-2">
+                        <span>Mulai Kuis</span>
+                        <span>➔</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRE-QUIZ VIEW (Input Nama & Kelas) -->
+            <div id="view-pre-quiz" class="hidden flex-grow flex-col items-center justify-center p-6 text-center fade-in">
+                <div class="text-5xl mb-4 pop-in">📝</div>
+                <h3 class="text-2xl font-bold text-green-700 mb-2">Persiapan Kuis</h3>
+                <p class="text-gray-600 mb-6 text-sm">Silakan isi nama dan kelasmu sebelum memulai evaluasi.</p>
+                
+                <div class="w-full max-w-sm bg-green-50 p-6 rounded-xl border border-green-200 shadow-sm">
+                    <div class="mb-4 text-left">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="student-name">Nama Lengkap</label>
+                        <input class="shadow-inner appearance-none border border-green-300 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 transition" id="student-name" type="text" placeholder="Masukkan nama kamu">
+                    </div>
+                    <div class="mb-6 text-left">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="student-class">Kelas</label>
+                        <select class="shadow-inner appearance-none border border-green-300 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 transition bg-white" id="student-class">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="V A">Kelas V A</option>
+                            <option value="V B">Kelas V B</option>
+                            <option value="V C">Kelas V C</option>
+                        </select>
+                    </div>
+                    <p id="pre-quiz-warning" class="text-red-500 text-xs font-bold mb-3 hidden text-left bg-red-50 p-2 rounded border border-red-200">⚠️ Mohon isi Nama Lengkap dan Kelas!</p>
+                    <button onclick="beginQuiz()" class="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition active:scale-95">
+                        Mulai Kerjakan Soal ➔
+                    </button>
+                </div>
+                <button onclick="switchView('view-interactive')" class="mt-4 px-6 py-2 text-gray-500 text-sm font-bold rounded-full hover:bg-gray-100 transition">Batal</button>
+            </div>
+
+            <!-- 4. QUIZ VIEW -->
+            <div id="view-quiz" class="hidden flex-grow flex-col p-6 fade-in">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-yellow-400 pb-2">
+                    <h3 class="text-xl font-bold text-green-700">3. Quiz Time!</h3>
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full border border-green-300">Soal <span id="q-current">1</span>/5</span>
+                </div>
+                
+                <div id="quiz-container" class="flex-grow flex flex-col justify-center max-w-lg mx-auto w-full">
+                    <h4 id="question-text" class="text-lg font-bold text-gray-800 mb-6 text-center">Question goes here...</h4>
+                    <div id="options-container" class="space-y-3">
+                        <!-- Options generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Custom Feedback Box (replaces alert) -->
+                <div id="feedback-box" class="hidden mt-6 p-4 rounded-xl border pop-in">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon" class="text-2xl mt-1">✅</div>
+                        <div>
+                            <h5 id="feedback-title" class="font-bold text-lg">Benar!</h5>
+                            <p id="feedback-desc" class="text-sm mt-1"></p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <button id="next-q-btn" onclick="nextQuestion()" class="px-6 py-2 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition">Lanjut</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. RESULT VIEW -->
+            <div id="view-result" class="hidden flex-grow flex-col items-center justify-center p-8 text-center fade-in">
+                <div id="medal-icon" class="text-6xl mb-4 pop-in">🏆</div>
+                <h2 class="text-3xl font-extrabold text-green-700 mb-2">Luar Biasa!</h2>
+                <p class="text-gray-600 mb-2">Kamu telah menyelesaikan pembelajaran hari ini.</p>
+                <div class="bg-yellow-100 border-2 border-yellow-400 rounded-xl p-6 my-4 w-full max-w-sm">
+                    <p class="text-sm font-bold text-yellow-800 mb-1">Skor Akhir Kamu:</p>
+                    <div class="text-5xl font-black text-green-600" id="final-score">100</div>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button onclick="resetApp()" class="px-6 py-2 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition">Ulangi Materi</button>
+                    <button onclick="startQuiz()" class="px-6 py-2 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition">Ulangi Kuis</button>
+                </div>
+            </div>
+
+            <!-- 6. OBJECTIVES VIEW -->
+            <div id="view-objectives" class="hidden flex-grow flex-col p-6 fade-in items-center text-center justify-center">
+                <div class="text-5xl mb-4">🎯</div>
+                <h3 class="text-2xl font-bold text-green-700 mb-6 border-b-2 border-yellow-400 pb-2 inline-block">Tujuan Pembelajaran</h3>
+                
+                <div class="bg-green-50 border border-green-200 rounded-xl p-6 max-w-lg mx-auto shadow-sm mb-8 text-left">
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-green-600 font-bold mr-3">1.</span>
+                            <span><b>Capaian Utama:</b> Students are able to use words about food and drink related to price. (Siswa mampu menggunakan kosakata tentang makanan dan minuman terkait harga).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 font-bold mr-3">2.</span>
+                            <span><b>Konteks Lokal:</b> Siswa dapat mempraktikkan tanya jawab harga menggunakan konteks jajanan lokal (seperti Binte Biluhuta, Nasi Kuning) di lingkungan sekitar Sukamakmur, Tolangohula.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 font-bold mr-3">3.</span>
+                            <span><b>Sikap:</b> Siswa menunjukkan rasa percaya diri dan antusiasme dalam berkomunikasi bahasa Inggris.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-auto">
+                    <button onclick="switchView('view-home')" class="px-8 py-2 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition shadow-sm">Kembali ke Menu</button>
+                </div>
+            </div>
+
+            <!-- 7. INFO & REFERENCE VIEW -->
+            <div id="view-info" class="hidden flex-grow flex-col p-6 fade-in items-center text-center justify-center">
+                <div class="text-5xl mb-4">ℹ️</div>
+                <h3 class="text-2xl font-bold text-green-700 mb-6 border-b-2 border-yellow-400 pb-2 inline-block">Informasi & Referensi</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8 text-left">
+                    <!-- Info Pengembang -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-bold text-green-700 mb-3 flex items-center"><span class="mr-2">👨‍💻</span> Info Pengembang</h4>
+                        <p class="text-sm text-gray-600 mb-2"><b>Pengembang:</b> Tim Inovasi Pembelajaran Digital</p>
+                        <p class="text-sm text-gray-600 mb-2"><b>Instansi:</b> Kanwil Kemenag Prov. Gorontalo</p>
+                        <p class="text-sm text-gray-600 mb-2"><b>Lokasi:</b> Kec. Tolangohula, Kab. Gorontalo</p>
+                        <p class="text-sm text-gray-600"><b>Versi:</b> 1.0 (Offline Ready)</p>
+                    </div>
+                    
+                    <!-- Referensi -->
+                    <div class="bg-white border-2 border-gray-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="font-bold text-green-700 mb-3 flex items-center"><span class="mr-2">📚</span> Referensi Modul</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+                            <li>Capaian Pembelajaran Bahasa Inggris Fase C MI.</li>
+                            <li>Buku Siswa Bahasa Inggris "My Next Words" Kelas V.</li>
+                            <li>Konteks Muatan Lokal Jajanan Khas Gorontalo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-auto">
+                    <button onclick="switchView('view-home')" class="px-8 py-2 bg-gray-200 text-gray-700 font-bold rounded-full hover:bg-gray-300 transition shadow-sm">Kembali ke Menu</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-xs text-green-800/60 font-semibold bg-green-50 border-t border-green-200 mt-auto">
+        &copy; 2026 - MPI MI Bahasa Inggris Fase C | Kanwil Kemenag Prov. Gorontalo
+    </footer>
+
+    <!-- Application Logic -->
+    <script>
+        // --- State Management ---
+        const views = ['view-home', 'view-material', 'view-interactive', 'view-pre-quiz', 'view-quiz', 'view-result', 'view-objectives', 'view-info'];
+        const sectionNames = {
+            'view-home': 'Beranda',
+            'view-material': '1. Materi',
+            'view-interactive': '2. Simulasi',
+            'view-pre-quiz': 'Persiapan Kuis',
+            'view-quiz': '3. Kuis Evaluasi',
+            'view-result': 'Hasil Akhir',
+            'view-objectives': 'Tujuan Belajar',
+            'view-info': 'Informasi'
+        };
+
+        // --- GAS Database Integration Variables ---
+        // GANTI STRING DI BAWAH DENGAN URL DEPLOY WEB APP GAS ANDA
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwO6H2gNjvEFlaNuwtWO-QVLXqMZ0zQPRijTBK2bYYVc-aTLMwP9JFERAecFJo0BPDKAg/exec'; 
+        
+        let studentName = '';
+        let studentClass = '';
+        let studentAnswers = [];
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        // --- Quiz Data Bank ---
+        const quizData = [
+            {
+                question: 'Andi ingin membeli Nasi Kuning. Harganya Rp 10.000. Bagaimana kalimat Andi untuk menanyakan harga dalam bahasa Inggris?',
+                options: [
+                    'How much is it?',
+                    'How many is it?',
+                    'What is it?'
+                ],
+                correct: 0,
+                explanation: 'Gunakan <b>"How much is it?"</b> untuk menanyakan harga suatu barang.'
+            },
+            {
+                question: 'Berapa harga segelas Es Teh (Sweet Tea) berdasarkan materi yang dipelajari?',
+                options: [
+                    'Two thousand rupiahs',
+                    'Three thousand rupiahs',
+                    'Five thousand rupiahs'
+                ],
+                correct: 1,
+                explanation: 'Es Teh harganya Rp 3.000. Tiga ribu rupiah dalam bahasa Inggris adalah <b>Three thousand rupiahs</b>.'
+            },
+            {
+                question: 'Harga Binte Biluhuta adalah "Eight thousand rupiahs". Penulisan angkanya adalah...',
+                options: [
+                    'Rp 8.000',
+                    'Rp 80.000',
+                    'Rp 18.000'
+                ],
+                correct: 0,
+                explanation: 'Eight = 8, Thousand = Ribu. Jadi <b>Eight thousand</b> = Rp 8.000.'
+            },
+            {
+                question: 'Kamu punya uang Rp 5.000. Kamu membeli Fried Banana seharga Rp 2.000. Berapa kembalianmu (dalam bahasa Inggris)?',
+                options: [
+                    'Two thousand rupiahs',
+                    'Three thousand rupiahs',
+                    'Four thousand rupiahs'
+                ],
+                correct: 1,
+                explanation: 'Rp 5.000 - Rp 2.000 = Rp 3.000. Tiga ribu bahasa Inggrisnya adalah <b>Three thousand rupiahs</b>.'
+            },
+            {
+                question: 'Ibu membeli Ayam Geprek seharga Rp 15.000. Bahasa Inggris dari lima belas ribu rupiah adalah...',
+                options: [
+                    'Fifty thousand rupiahs',
+                    'Five thousand rupiahs',
+                    'Fifteen thousand rupiahs'
+                ],
+                correct: 2,
+                explanation: 'Lima belas = Fifteen. Ribu = Thousand. Maka Rp 15.000 = <b>Fifteen thousand rupiahs</b>.'
+            }
+        ];
+
+        // --- Navigation Logic ---
+        function switchView(viewId) {
+            // Hide all views
+            views.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            // Show target view
+            document.getElementById(viewId).classList.remove('hidden');
+            
+            // Update Header nav
+            const headerNav = document.getElementById('header-nav');
+            if (viewId === 'view-home') {
+                headerNav.classList.add('hidden');
+            } else {
+                headerNav.classList.remove('hidden');
+                document.getElementById('current-section').innerText = sectionNames[viewId];
+            }
+        }
+
+        // --- Interactive Simulation Logic ---
+        function addToCart(itemName, priceNum, priceEn) {
+            document.getElementById('cart-placeholder').classList.add('hidden');
+            const resultBox = document.getElementById('cart-result');
+            
+            // Force reflow for animation
+            resultBox.classList.remove('pop-in');
+            void resultBox.offsetWidth; 
+            resultBox.classList.add('pop-in');
+            
+            resultBox.classList.remove('hidden');
+
+            document.getElementById('item-name').innerText = itemName;
+            document.getElementById('item-price-en').innerText = priceEn;
+            document.getElementById('item-price-num').innerText = 'Rp ' + priceNum.toLocaleString('id-ID');
+        }
+
+        // --- Quiz Logic ---
+        function startQuiz() {
+            switchView('view-pre-quiz');
+            // Reset input form
+            document.getElementById('student-name').value = '';
+            document.getElementById('student-class').value = '';
+            document.getElementById('pre-quiz-warning').classList.add('hidden');
+        }
+
+        function beginQuiz() {
+            const nameInput = document.getElementById('student-name').value.trim();
+            const classInput = document.getElementById('student-class').value;
+            const warning = document.getElementById('pre-quiz-warning');
+            
+            if (!nameInput || !classInput) {
+                warning.classList.remove('hidden');
+                return;
+            }
+            warning.classList.add('hidden');
+            
+            // Simpan data siswa ke variabel global
+            studentName = nameInput;
+            studentClass = classInput;
+            studentAnswers = [];
+            correctCount = 0;
+            wrongCount = 0;
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            switchView('view-quiz');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            document.getElementById('feedback-box').classList.add('hidden');
+            document.getElementById('q-current').innerText = currentQuestionIndex + 1;
+            
+            const q = quizData[currentQuestionIndex];
+            document.getElementById('question-text').innerText = q.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-4 rounded-xl border-2 border-gray-200 font-semibold text-gray-700 hover:border-green-500 hover:bg-green-50 transition active:scale-95';
+                btn.innerHTML = `<span class="inline-block w-6 h-6 rounded-full bg-gray-200 text-center text-sm leading-6 mr-3">${String.fromCharCode(65 + index)}</span> ${opt}`;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            
+            const q = quizData[currentQuestionIndex];
+            const isCorrect = (selectedIndex === q.correct);
+            
+            // Catat teks jawaban spesifik yang dipilih siswa untuk dianalisis oleh guru
+            studentAnswers[currentQuestionIndex] = q.options[selectedIndex];
+            
+            const buttons = document.getElementById('options-container').children;
+            
+            // Show correct answer visually
+            buttons[q.correct].classList.remove('border-gray-200', 'hover:bg-green-50');
+            buttons[q.correct].classList.add('border-green-500', 'bg-green-100', 'text-green-800');
+            
+            if (isCorrect) {
+                score += 20; // 5 questions * 20 = 100 max
+                correctCount++;
+            } else {
+                wrongCount++;
+                // Show wrong answer visually
+                btnElement.classList.remove('border-gray-200');
+                btnElement.classList.add('border-red-400', 'bg-red-50', 'text-red-700');
+            }
+
+            showFeedback(isCorrect, q.explanation);
+        }
+
+        function showFeedback(isCorrect, explanationHtml) {
+            const fbBox = document.getElementById('feedback-box');
+            const fbTitle = document.getElementById('feedback-title');
+            const fbDesc = document.getElementById('feedback-desc');
+            const fbIcon = document.getElementById('feedback-icon');
+            const nextBtn = document.getElementById('next-q-btn');
+
+            fbBox.className = 'mt-6 p-4 rounded-xl border pop-in ' + (isCorrect ? 'bg-green-50 border-green-200 text-green-900' : 'bg-red-50 border-red-200 text-red-900');
+            fbIcon.innerText = isCorrect ? '🎉' : '💡';
+            fbTitle.innerText = isCorrect ? 'Benar Sekali!' : 'Kurang Tepat';
+            fbDesc.innerHTML = explanationHtml;
+            
+            // Check if last question
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextBtn.innerText = 'Lihat Hasil Akhir';
+                nextBtn.onclick = showResult;
+            } else {
+                nextBtn.innerText = 'Soal Berikutnya';
+                nextBtn.onclick = nextQuestion;
+            }
+
+            fbBox.classList.remove('hidden');
+            fbBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            switchView('view-result');
+            
+            const scoreDisplay = document.getElementById('final-score');
+            const medal = document.getElementById('medal-icon');
+            
+            // Tampilkan animasi loading selagi data dikirim
+            scoreDisplay.innerHTML = '<span class="text-xl text-green-600 animate-pulse font-semibold block my-4">Menyimpan data...</span>';
+            
+            // Eksekusi pengiriman data, lalu panggil animasi skor
+            sendDataToGAS().then(() => {
+                // Animate score counter
+                scoreDisplay.innerText = '0';
+                let currentDisplay = 0;
+                const interval = setInterval(() => {
+                    currentDisplay += 5;
+                    if(currentDisplay >= score) {
+                        currentDisplay = score;
+                        clearInterval(interval);
+                        // Update Medal based on score
+                        if(score === 100) medal.innerText = '🥇';
+                        else if(score >= 80) medal.innerText = '🥈';
+                        else if(score >= 60) medal.innerText = '🥉';
+                        else medal.innerText = '💪';
+                    }
+                    scoreDisplay.innerText = currentDisplay;
+                }, 50);
+            });
+        }
+
+        // Fungsi HTTP Async pengirim data (Backend Connection)
+        async function sendDataToGAS() {
+            if (GAS_URL === 'URL_WEB_APP_GAS_ANDA_DISINI' || GAS_URL === '') {
+                console.warn('URL GAS belum dikonfigurasi. Simulasi mode offline lokal dijalankan.');
+                return; // Melanjutkan tanpa error jika belum diset guru
+            }
+
+            const data = {
+                nama: studentName,
+                kelas: studentClass,
+                skor: score,
+                benar: correctCount,
+                salah: wrongCount,
+                jawaban: studentAnswers
+            };
+            
+            try {
+                // Menggunakan header text/plain untuk melewati restriksi preflight CORS yang kompleks pada browser
+                await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(data)
+                });
+            } catch (error) {
+                console.error("Kesalahan jaringan saat mengirim data:", error);
+            }
+        }
+
+        function resetApp() {
+            // Reset state
+            document.getElementById('cart-placeholder').classList.remove('hidden');
+            document.getElementById('cart-result').classList.add('hidden');
+            switchView('view-home');
+        }
+
+        // Initialize App & Splash Screen
+        window.onload = function() {
+            // Handle splash screen
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    resetApp(); // Start app after splash
+                }, 700); // Wait for transition
+            }, 2500); // Show splash for 2.5 seconds
+        };
+
+    </script>
+</body>
+</html>
